@@ -42,7 +42,6 @@ def main():
     click_btn.config(font=('Arial', INST_FONT_SIZE), fg=FG_COLOR, bg=WIDGET_COLOR)
     click_btn.grid(row=2, column=2, pady=INST_FONT_SIZE)
     click_txt.set('Detect')
-
     #----------------------------Detection ends----------------------------
     
     #----------------------------Card and Dye codes starts----------------------------
