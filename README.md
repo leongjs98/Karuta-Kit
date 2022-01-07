@@ -11,7 +11,7 @@ Instructions:
 `$hrxxx $k4xxx $xxx9t $kxxnv $vxxx4`\
 Make sure no ',' is inside and each code is separated by whitespace(s) only.
 
-4. Choose an interval between each dye test. 2 seconds is recommended to avoid lag
+4. Choose an interval between each dye test. 2 seconds is recommended to avoid any lag
 
 5. Press "Start". Hold "esc" to stop the testing. Enjoy!
 
