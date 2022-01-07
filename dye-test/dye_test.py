@@ -3,9 +3,7 @@ import keyboard     # Detect if "ESC" is hit
 import time         # Time interval between each entry
 
 # For the simple user interface
-from PIL import Image, ImageTk
 import tkinter as tk
-from tkinter.filedialog import askopenfile
 
 
 pointer_position = [0, 0]
@@ -21,32 +19,14 @@ def main():
     root.configure(bg=BG_COLOR)
     root.resizable(width=False, height=False)
 
-    frame_img = tk.LabelFrame(root, bg=BG_COLOR, fg=FG_COLOR)
-    frame_img.pack()
-    
+    #----------------------------Detection starts----------------------------
     frame_detect = tk.LabelFrame(root, text="Where to type?", padx=10, pady=10, bg=BG_COLOR, fg=FG_COLOR, bd=1)
     frame_detect.pack(padx=10, pady=10)
 
-    frame_codes = tk.LabelFrame(root, padx=10, pady=10, bg=BG_COLOR, fg=FG_COLOR, bd=0)
-    frame_codes.pack(padx=10, pady=10)
-
-    frame_interval = tk.LabelFrame(root, bg=BG_COLOR, fg=FG_COLOR, bd=0)
-    frame_interval.pack(padx=10, pady=10)
-
-    frame_btn = tk.LabelFrame(root, padx=10, pady=10, bg=BG_COLOR, fg=FG_COLOR, bd=0)
-    frame_btn.pack(padx=10)
-
-    # Logo
-    img = Image.open('./logo.png')
-    img = ImageTk.PhotoImage(img)
-    logo = tk.Label(frame_img, image=img)
-    logo.config(bg=BG_COLOR)
-    logo.grid(row=0, column=3, pady=INST_FONT_SIZE)
-
-    # Instruction for detection
-    inst_detect3 = tk.Label(frame_detect, text='Press "Ctrl" after clicking  ')
-    inst_detect3.config(font=('Helvetica', INST_FONT_SIZE), fg=FG_COLOR, bg=BG_COLOR)
-    inst_detect3.grid(row=2, column=1)
+    # Instruction
+    inst_detect = tk.Label(frame_detect, text='Press "Ctrl" after clicking  ')
+    inst_detect.config(font=('Helvetica', INST_FONT_SIZE), fg=FG_COLOR, bg=BG_COLOR)
+    inst_detect.grid(row=2, column=1)
 
     def detect_pointer():
         keyboard.wait('ctrl')
@@ -63,7 +43,13 @@ def main():
     click_btn.grid(row=2, column=2, pady=INST_FONT_SIZE)
     click_txt.set('Detect')
 
-    # # Instruction for dye testing
+    #----------------------------Detection ends----------------------------
+    
+    #----------------------------Card and Dye codes starts----------------------------
+    frame_codes = tk.LabelFrame(root, padx=10, pady=10, bg=BG_COLOR, fg=FG_COLOR, bd=0)
+    frame_codes.pack(padx=10, pady=10)
+
+    # # Instruction
     inst_card = tk.Label(frame_codes, text='Card code:  ')
     inst_card.config(font=('Helvetica', INST_FONT_SIZE), fg=FG_COLOR, bg=BG_COLOR)
     inst_card.grid(row=0, column=0)
@@ -79,11 +65,15 @@ def main():
     dye_code = tk.StringVar()
     dye_entry = tk.Entry(frame_codes, textvariable=dye_code, borderwidth=3, width=50)
     dye_entry.grid(row=1, column=1)
+    #----------------------------Card and Dye codes ends----------------------------
 
+    #----------------------------Typing interval starts----------------------------
+    frame_interval = tk.LabelFrame(root, bg=BG_COLOR, fg=FG_COLOR, bd=0)
+    frame_interval.pack(padx=10, pady=10)
 
-    inst_browse2 = tk.Label(frame_interval, text='Interval (seconds):  ')
-    inst_browse2.config(font=('Helvetica', INST_FONT_SIZE), fg=FG_COLOR, bg=BG_COLOR)
-    inst_browse2.grid(row=0, column=0)
+    inst_interval = tk.Label(frame_interval, text='Interval (seconds):  ')
+    inst_interval.config(font=('Helvetica', INST_FONT_SIZE), fg=FG_COLOR, bg=BG_COLOR)
+    inst_interval.grid(row=0, column=0)
     
     def autotype_dye_test():
         dyes = dye_entry.get().split(" ")
@@ -100,7 +90,6 @@ def main():
         
         stop_testing()
         
-
     # Time interval between typing
     drop_txt = tk.StringVar()
     drop_txt.set('2')
@@ -109,7 +98,11 @@ def main():
     drop = tk.OptionMenu(frame_interval, drop_txt, '1', '2', '3', '4', '5', '6', '7', '8')
     drop.config(font=('Arial', INST_FONT_SIZE), fg=FG_COLOR, bg=WIDGET_COLOR)
     drop.grid(row=0, column=1)
+    #----------------------------Typing interval ends----------------------------
 
+    #----------------------------Start and Exit Button starts----------------------------
+    frame_btn = tk.LabelFrame(root, padx=10, pady=10, bg=BG_COLOR, fg=FG_COLOR, bd=0)
+    frame_btn.pack(padx=10)
 
     # Start button
     start_btn = tk.Button(frame_btn, command=autotype_dye_test, text='Start', height=1, width=7)
@@ -125,13 +118,14 @@ def main():
 
     frame_inst = tk.LabelFrame(root, bg=BG_COLOR, fg=FG_COLOR, bd=0)
     frame_inst.pack()
-    inst_1 = tk.Label(frame_inst, text='Hold "esc" to stop.')
-    inst_1.config(font=('Helvetica', INST_FONT_SIZE), fg=FG_COLOR, bg=BG_COLOR)
-    inst_1.grid(row=0, column=0, pady=5)
+    inst_stop = tk.Label(frame_inst, text='Hold "esc" to stop.')
+    inst_stop.config(font=('Helvetica', INST_FONT_SIZE), fg=FG_COLOR, bg=BG_COLOR)
+    inst_stop.grid(row=0, column=0, pady=5)
 
-    inst_2 = tk.Label(frame_inst, text='Check README.md for instructions')
-    inst_2.config(font=('Helvetica', INST_FONT_SIZE), fg=FG_COLOR, bg=BG_COLOR)
-    inst_2.grid(row=1, column=0, pady=5)
+    inst_readme = tk.Label(frame_inst, text='Check README.md for instructions')
+    inst_readme.config(font=('Helvetica', INST_FONT_SIZE), fg=FG_COLOR, bg=BG_COLOR)
+    inst_readme.grid(row=1, column=0, pady=5)
+    #----------------------------Start and Exit Button ends----------------------------
 
 
     root.mainloop()
