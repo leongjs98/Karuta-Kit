@@ -4,6 +4,7 @@ import time         # Time interval between each entry
 
 # For the simple user interface
 import tkinter as tk
+from tkinter import messagebox
 
 
 pointer_position = [0, 0]
