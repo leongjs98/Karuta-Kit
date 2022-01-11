@@ -198,7 +198,7 @@ def main():
     drop_txt.set('3')
     interval_entry = tk.ttk.Entry(root, textvariable=drop_txt)
     
-    drop = tk.OptionMenu(frame_interval, drop_txt, '3', '4', '5', '6', '7', '8', '9', '10')
+    drop = tk.OptionMenu(frame_interval, drop_txt, '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15')
     drop.config(font=('Arial', INST_FONT_SIZE), fg=FG_COLOR, bg=WIDGET_COLOR)
     drop.grid(row=0, column=1)
     #----------------------------Typing interval ends----------------------------
