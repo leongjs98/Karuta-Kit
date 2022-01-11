@@ -150,7 +150,7 @@ def main():
                 condition_list.remove("mint")
 
         # Find out the wanted card codes and their conditions
-        card_name = card_name_entry.get().replace(" ", "")  # Get the name and remove the empty spaces
+        card_name = card_name_entry.get().strip()  # Get the name and remove the empty spaces at both ends
         cards = card_code_entry.get()
         unformat_cards = re.findall(r"took the " + card_name + r".+", cards)
         
@@ -169,8 +169,9 @@ def main():
 
         # Start typing
         command = ""
-        for i, card in enumerate(card_list):
-
+        i = 0
+        for card in card_list:
+            # command = "kci"
             if card["condition"] in condition_list:
                 if card:
                     if i % 3 == 1:
@@ -187,6 +188,8 @@ def main():
                     pyautogui.write(f'{command} {card["code"]}')
                     pyautogui.press('enter')
                     time.sleep(int(interval_entry.get()))
+
+                    i += 1
         
         stop_typing()
         
@@ -195,7 +198,7 @@ def main():
     drop_txt.set('3')
     interval_entry = tk.ttk.Entry(root, textvariable=drop_txt)
     
-    drop = tk.OptionMenu(frame_interval, drop_txt, '3', '4', '5', '6', '7', '8')
+    drop = tk.OptionMenu(frame_interval, drop_txt, '3', '4', '5', '6', '7', '8', '9', '10')
     drop.config(font=('Arial', INST_FONT_SIZE), fg=FG_COLOR, bg=WIDGET_COLOR)
     drop.grid(row=0, column=1)
     #----------------------------Typing interval ends----------------------------
